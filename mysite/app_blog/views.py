@@ -24,13 +24,16 @@ class ArticleDetail(DateDetailView):
     query_pk_and_slug = True
     month_format = '%m'
     allow_future = True
-
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(ArticleDetail, self).get_context_data(*args, **kwargs)
+    #     # try:
+    #     #     context['images'] = context['item'].images.all()
+    #     # except:
+    #     #     pass
+    #     return context
     def get_context_data(self, *args, **kwargs):
         context = super(ArticleDetail, self).get_context_data(*args, **kwargs)
-        try:
-            context['images'] = context['item'].images.all()
-        except:
-            pass
+        context['images'] = self.object.images.all() 
         return context
 
 
